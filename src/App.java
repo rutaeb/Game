@@ -13,8 +13,8 @@ import java.awt.Graphics;
 
 public class App {
     public static int EHP = 1000; // Enemy Health bar
-    public static int EHPstarting = 10; // Enemy Health bar that it starts with
-    public static int HP = 20; // Health bar
+    // public static int EHPstarting = 10; // Enemy Health bar that it starts with
+    public static int HP = 200; // Health bar
     public static int FPoints = 0; // FPOINTS
 
     public static void main(String[] args) throws Exception {
