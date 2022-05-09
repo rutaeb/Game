@@ -10,17 +10,19 @@ import java.util.Scanner;
 
 import java.awt.Graphics;
 
+
 public class App {
-    public static int EHP = 10000; // Enemy Health bar
+    public static int EHP = 1000; // Enemy Health bar
     public static int EHPstarting = 10; // Enemy Health bar that it starts with
     public static int HP = 20; // Health bar
-    public static int FPoints = 2; // FPOINTS
+    public static int FPoints = 0; // FPOINTS
 
     public static void main(String[] args) throws Exception {
 
-        JFrame frame = new JFrame("Game3");
-        JFrame frame2 = new JFrame("Game3Continue");
-        JFrame frameATTACK = new JFrame("Game3Continue");
+        JFrame frame = new JFrame("Froggie Bullying :(");
+        JFrame frame2 = new JFrame("Froggie Bullying >:(");
+        JFrame frameATTACK = new JFrame("Why would you attack him???");
+        JFrame frameStats = new JFrame("Your stats?");
 
         Image backgroundImage = Toolkit.getDefaultToolkit().getImage("src/bg2.png");
         JPanel panel = new JPanel() {
@@ -33,7 +35,7 @@ public class App {
         panel.setSize(960, 640);
         frame.add(panel);
 
-        JLabel label = new JLabel("---- Rescue");
+        JLabel label = new JLabel("Frog bullying :(");
         label.setBounds(300, 150, 400, 80);
         label.setFont(new Font("Arial", Font.BOLD, 50));
         Color c = new Color(91, 65, 76, 255);
@@ -59,7 +61,11 @@ public class App {
         frame2.setLayout(null);
         frameATTACK.setSize(960, 640);
         frameATTACK.setLayout(null);
+        frameStats.setSize(960, 640);
+        frameStats.setLayout(null);
+
         panel.setLayout(null);
+
 
         ///////////////////////////////////////
 
@@ -72,9 +78,11 @@ public class App {
         frame.setVisible(true);
         frame2.setVisible(false);
         frameATTACK.setVisible(false);
+        frameStats.setVisible(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameATTACK.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameStats.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         buttonExit.addActionListener(new ActionListener() { // Exit Buttona action
 
             public void actionPerformed(ActionEvent a) {
@@ -108,17 +116,29 @@ public class App {
                 buttonAttack.setForeground(c2);
                 panel.add(buttonAttack);
 
-                JButton buttonCompliment = new JButton("Compliment");
-                buttonCompliment.setBounds(353, 450, 253, 80);
+                JButton buttonCompliment = new JButton("Rise friendship");
+                buttonCompliment.setBounds(353, 400, 253, 80);
                 buttonCompliment.setBackground(c);
                 buttonCompliment.setForeground(c2);
                 panel.add(buttonCompliment);
+
+                JButton buttonLowerFP = new JButton("Lower friendship");
+                buttonLowerFP.setBounds(353, 500, 253, 80);
+                buttonLowerFP.setBackground(c);
+                buttonLowerFP.setForeground(c2);
+                panel.add(buttonLowerFP);
 
                 JButton buttonMenu = new JButton("Menu");
                 buttonMenu.setBounds(626, 450, 253, 80);
                 buttonMenu.setBackground(c);
                 buttonMenu.setForeground(c2);
                 panel.add(buttonMenu);
+
+                JButton buttonCheck = new JButton("Stats");
+                buttonCheck.setBounds(626, 540, 100, 30);
+                buttonCheck.setBackground(c);
+                buttonCheck.setForeground(c2);
+                panel.add(buttonCheck);
 
                 buttonMenu.addActionListener(new ActionListener() { // Menu Buttona action
 
@@ -129,24 +149,36 @@ public class App {
                     }
                 });
 
+                JLabel label5 = new JLabel();
+                label5.setBounds(20, 50, 900, 60);
+                label5.setFont(new Font("Arial", Font.PLAIN, 45));
+                label5.setForeground(Color.blue);
+                frameStats.add(label5);
+
                 JLabel label = new JLabel("You attack Froggie!");
                 label.setBounds(20, 50, 900, 60);
-                label.setFont(new Font("Arial", Font.BOLD, 50));
+                label.setFont(new Font("Arial", Font.BOLD, 45));
                 label.setForeground(Color.RED);
                 frameATTACK.add(label);
 
                 Color c = new Color(91, 65, 76, 255);
 
                 JLabel labelResult = new JLabel();
-                labelResult.setBounds(40, 80, 500, 60);
+                labelResult.setBounds(40, 80, 920, 60);
                 labelResult.setFont(new Font("Arial", Font.PLAIN, 30));
                 labelResult.setForeground(c);
                 frameATTACK.add(labelResult);
 
-                JLabel labelResponse = new JLabel("TESTTTT");
-                labelResponse.setBounds(40, 150, 500, 60);
-                labelResponse.setFont(new Font("Arial", Font.PLAIN, 30));
-                labelResponse.setForeground(c);
+                JLabel labelResult2 = new JLabel();
+                labelResult2.setBounds(20, 110, 920, 60);
+                labelResult2.setFont(new Font("Arial", Font.PLAIN, 30));
+                labelResult2.setForeground(c);
+                frameATTACK.add(labelResult2);
+
+                JLabel labelResponse = new JLabel();
+                labelResponse.setBounds(20, 170, 920, 60);
+                labelResponse.setFont(new Font("Arial", Font.PLAIN, 40));
+                labelResponse.setForeground(Color.BLUE);
                 frameATTACK.add(labelResponse);
 
                 JButton buttonOkay = new JButton("Okay");
@@ -159,142 +191,40 @@ public class App {
 
                     public void actionPerformed(ActionEvent b) {
                         System.out.println();
-
-                        frameATTACK.setVisible(false);
+                            frameATTACK.setVisible(false);
+                      
+                       
 
                     }
                 });
+
+              
 
                 buttonCompliment.addActionListener(new ActionListener() { // Compliment button aciton
 
                     public void actionPerformed(ActionEvent b) {
                         // actionhere
-
+                        if (FPoints != 4) {
+                            FPoints++;
+                        }
                         // frameATTACK.setVisible(true);
                         // ATTACK uzbrukt
-                        System.out.printf("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n");
-                        System.out.println("---------------------------------------");
-                        System.out.println("\u001B[36m\u001B[1mYou chose to compliment Froggie");
-                        System.out.println("---------------------------------------");
+                       
+                       
+                    }
+                });
 
-                        int r = (int) (Math.random() * (1 + 5 - 1) + 1);
-                        switch (r) {
-                            case 1:
-                                System.out.println("You: Your eyes are as bright and beautiful as stars in the night.");
+                buttonLowerFP.addActionListener(new ActionListener() { // LowerFP button aciton
 
-                                if (FPoints == 0) {
-                                    System.out.printf("Froggie: T-Thanks? What is this about??");
-                                    FPoints++;
-                                } else if (FPoints == 1) {
-                                    System.out.printf("Froggie: That's a bit sudden. Thanks though.");
-                                    FPoints++;
-                                } else if (FPoints == 2) {
-                                    System.out.printf("Froggie: Thanks!");
-                                    FPoints++;
-                                } else if (FPoints == 3) {
-                                    System.out.printf("Froggie: Thanks, mate!");
-                                    FPoints++;
-                                } else if (FPoints == 4) {
-                                    System.out.printf("Froggie: Aww, thank you. You too!");
-
-                                }
-                                FPoints++;
-                                FPoints++;
-
-                                break;
-                            case 2:
-                                System.out.println("You: Oh, I love your shoes! Really fits your outfit today.");
-                                if (FPoints == 0) {
-                                    System.out.printf("Froggie: I know.");
-                                    FPoints++;
-                                    FPoints++;
-                                } else if (FPoints == 1) {
-                                    System.out.printf("Froggie: Thanks?");
-
-                                } else if (FPoints == 2) {
-                                    System.out.printf("Froggie: Oh, thank you!");
-
-                                    FPoints++;
-                                } else if (FPoints == 3) {
-                                    System.out.printf("Froggie: Thanks, mate!");
-
-                                } else if (FPoints == 4) {
-                                    System.out.printf(
-                                            "Froggie: Why thank you. Your shirt brings out your eye colour. Looks great!");
-
-                                }
-                                FPoints++;
-
-                                break;
-                            case 3:
-                                System.out
-                                        .println("You: Has anyone ever told you how beautiful of a smile you've got?");
-                                if (FPoints == 0) {
-                                    System.out.printf("Froggie: Nobody has ever said that, no.");
-                                    FPoints++;
-                                } else if (FPoints == 1) {
-                                    System.out.printf("Froggie: No.");
-                                    FPoints++;
-                                    FPoints++;
-                                } else if (FPoints == 2) {
-                                    System.out.printf("Froggie: Thanks!");
-
-                                } else if (FPoints == 3) {
-                                    System.out.printf("Froggie: Thank you, that means a lot.");
-
-                                    FPoints++;
-                                } else if (FPoints == 4) {
-
-                                    System.out.printf("Froggie: Thank you bud, your smile isn't so bad either.");
-
-                                }
-                                FPoints++;
-
-                                break;
-                            case 4:
-                                System.out.println("You: You're really smart!");
-                                if (FPoints == 0) {
-                                    System.out.printf("Froggie: And you're the opposite.");
-                                    FPoints--;
-                                } else if (FPoints == 1) {
-                                    System.out.printf("Froggie: I know right?. It's not hard to tell. ");
-                                    FPoints++;
-                                    FPoints++;
-                                } else if (FPoints == 2) {
-                                    System.out.printf("Froggie: Thank you.");
-                                } else if (FPoints == 3) {
-                                    System.out.printf("Froggie: Thanks, bud!");
-                                    FPoints++;
-                                } else if (FPoints == 4) {
-
-                                    System.out.printf("Froggie: Thanks, you're smart as well!");
-
-                                }
-                                FPoints++;
-
-                                break;
-                            case 5:
-                                System.out.println(
-                                        "You: You know.. You're the best looking one out of all of these monsters");
-                                if (FPoints == 0) {
-                                    System.out.printf("Froggie: Are you insulting my friends?");
-                                    FPoints--;
-                                } else if (FPoints == 1) {
-                                    System.out.printf("Froggie: Oh...");
-                                    FPoints++;
-                                } else if (FPoints == 2) {
-                                    System.out.printf("Froggie: Thank you.");
-                                    FPoints++;
-                                } else if (FPoints == 3) {
-                                    System.out.printf("Froggie: No way! Really?");
-                                    FPoints++;
-                                } else if (FPoints == 4) {
-                                    System.out.printf("Froggie: Awww, shuckss... ");
-                                }
-                                FPoints++;
-
-                                break;
+                    public void actionPerformed(ActionEvent b) {
+                        // actionhere
+                        if (FPoints != 0) {
+                            FPoints--;
                         }
+                        // frameATTACK.setVisible(true);
+                        // ATTACK uzbrukt
+                       
+                       
                     }
                 });
 
@@ -326,102 +256,102 @@ public class App {
 
                         }
 
-                        rCrit = (int) (Math.random() * (1 + 100 - 0) + 0);
-                        int r3 = (int) (Math.random() * (1 + 3 - 2) + 2);
-                        Atkdmg = r3;
+                        int rCrit2 = (int) (Math.random() * (1 + 100 - 0) + 0);
+                        int Atkdmg2 = (int) (Math.random() * (1 + 3 - 2) + 2);
+                        int r = (int) (Math.random() * (1 + 5 - 1) + 1);
 
                         if (EHP > 0) {
-                            int r = (int) (Math.random() * (1 + 5 - 1) + 1);
-                            if (FPoints == 0) {
+                            
+                            if (FPoints <= 0) {
                                 switch (r) {
                                     case 1:
-                                        labelResponse.setText("Froggie: You'll pay for this!%n");
+                                        labelResponse.setText("Froggie: You'll pay for this!");
                                         break;
                                     case 2:
-                                        labelResponse.setText("Froggie: You're about to get hurt!%n");
+                                        labelResponse.setText("Froggie: You're about to get hurt!");
                                         break;
                                     case 3:
-                                        labelResponse.setText("Froggie: You'll pay for this!%n");
+                                        labelResponse.setText("Froggie: You'll pay for this!");
                                         break;
                                     case 4:
-                                        labelResponse.setText("Froggie: How stupid of you.%n");
+                                        labelResponse.setText("Froggie: How stupid of you.");
                                         break;
                                     case 5:
-                                        labelResponse.setText("Froggie: FOOOOL!!%n");
+                                        labelResponse.setText("Froggie: FOOOOL!!");
                                         break;
                                 }
 
                             } else if (FPoints == 1) {
                                 switch (r) {
                                     case 1:
-                                        labelResponse.setText("Froggie: You'll wish you continued talking!%n");
-                                        FPoints--;
+                                        labelResponse.setText("Froggie: You'll wish you continued talking!");
+                                        if (FPoints > 0) 
                                         break;
                                     case 2:
-                                        labelResponse.setText("Froggie: I see you're a fighter.%n");
+                                        labelResponse.setText("Froggie: I see you're a fighter.");
 
                                         break;
                                     case 3:
-                                        labelResponse.setText("Froggie: This is my kind of language.%n");
-                                        if (Atkdmg > 1) {
-                                            Atkdmg = Atkdmg - 1;
+                                        labelResponse.setText("Froggie: This is my kind of language.");
+                                        if (Atkdmg2 > 1) {
+                                            Atkdmg2 = Atkdmg2 - 1;
                                         }
                                         break;
                                     case 4:
 
                                         break;
                                     case 5:
-                                        labelResponse.setText("Froggie: YOU'RE A FOOL!!%n");
+                                        labelResponse.setText("Froggie: YOU'RE A FOOL!!");
                                         break;
                                 }
                             } else if (FPoints == 2) {
                                 if (r == 1 || r == 2 || r == 3) {
-                                    labelResponse.setText("Froggie: Can't say I'm surprised.%n");
-                                    if (Atkdmg > 1) {
-                                        Atkdmg = Atkdmg - 1;
+                                    labelResponse.setText("Froggie: Can't say I'm surprised.");
+                                    if (Atkdmg2 > 1) {
+                                        Atkdmg2 = Atkdmg2 - 1;
                                     }
-                                    FPoints--;
+                                   
                                 } else if (r == 4 || r == 5) {
-                                    labelResponse.setText("Froggie: You sure about that?%n");
-                                    FPoints--;
+                                    labelResponse.setText("Froggie: You sure about that?");
+                                   
                                 }
 
                             } else if (FPoints == 3) {
                                 if (r == 1 || r == 2 || r == 3) {
-                                    labelResponse.setText("Froggie: And here I thought we could be friends.%n");
-                                    FPoints--;
-                                    Atkdmg = 1;
+                                    labelResponse.setText("Froggie: And here I thought we could be friends.");
+                                    
+                                    Atkdmg2 = 1;
                                 } else if (r == 4 || r == 5) {
-                                    labelResponse.setText("Froggie: Betrayal at it's finest.%n");
-                                    FPoints--;
-                                    if (Atkdmg > 0) {
-                                        Atkdmg = 3;
+                                    labelResponse.setText("Froggie: Betrayal at it's finest.");
+                                   
+                                    if (Atkdmg2 > 0) {
+                                        Atkdmg2 = 3;
                                     }
                                 }
                             } else if (FPoints == 4) {
                                 if (r == 1 || r == 2 || r == 3) {
-                                    labelResponse.setText("Froggie: I can't believe you'd attack me..%n");
-                                    FPoints--;
-                                    Atkdmg = 0;
+                                    labelResponse.setText("Froggie: I can't believe you'd attack me..");
+                                    
+                                    Atkdmg2 = 0;
                                 } else if (r == 4 || r == 5) {
-                                    labelResponse.setText("Froggie: HOW DARE YOU?????%n");
-                                    FPoints--;
-                                    if (Atkdmg > 0) {
-                                        Atkdmg = 4;
-                                        rCrit = 5;
+                                    labelResponse.setText("Froggie: HOW DARE YOU?????");
+                                    
+                                    if (Atkdmg2 > 0) {
+                                        Atkdmg2 = 4;
+                                        rCrit2 = 5;
                                     }
                                 }
                             }
 
-                            if (rCrit >= 94) {
-                                labelResponse.setText("Froggie missed! Froggie: Frick!");
+                            if (rCrit2 >= 94) {
+                                labelResult2.setText("Froggie missed! Froggie: Frick!");
                             } else {
-                                if (rCrit <= 5) {
-                                    Atkdmg = Atkdmg * 2;
-                                    labelResponse.setText("Critical hit! Froggie hit you and dealt "
-                                            + Atkdmg + " damage.");
+                                if (rCrit2 <= 5) {
+                                    Atkdmg2 = Atkdmg2 * 2;
+                                    labelResult2.setText("Critical hit! Froggie hit you and dealt "
+                                            + Atkdmg2 + " damage.");
                                 } else {
-                                    labelResponse.setText("Froggie hit you and dealt " + Atkdmg + " damage.");
+                                    labelResult2.setText("Froggie hit you and dealt " + Atkdmg2 + " damage.");
                                 }
                             }
 
@@ -434,6 +364,32 @@ public class App {
                             // labelResponse.setText("continue");
                         }
 
+                    }
+                });
+                
+
+                buttonCheck.addActionListener(new ActionListener() { // stat Buttona action
+
+                    public void actionPerformed(ActionEvent b) {
+                        frameStats.setVisible(true);
+                        label5.setText("FPoints: " + FPoints + " // Enemy HP: " + EHP + " // Your HP: " + HP);
+                        
+                        JButton buttonOkay2 = new JButton("Okay");
+                 buttonOkay2.setBounds(300, 500, 253, 80);
+                buttonOkay2.setBackground(c);
+                buttonOkay2.setForeground(c2);
+                frameStats.add(buttonOkay2);
+
+                buttonOkay2.addActionListener(new ActionListener() { // Okay button action
+
+                    public void actionPerformed(ActionEvent b) {
+                        System.out.println();
+                            frameStats.setVisible(false);
+                      
+                       
+
+                    }
+                });
                     }
                 });
 
